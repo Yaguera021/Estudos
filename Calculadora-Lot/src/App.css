@@ -1,22 +1,111 @@
-body {
-  font-family: 'Roboto', sans-serif;
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: rgb(25, 53, 114);
 }
 
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: rgb(25, 53, 114);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+/* Logo */
+img {
+  width: 100px;
+}
+
+/* Título */
 h2 {
   font-family: 'Times New Roman', Times, serif;
-  font-size: 2rem;
+  font-size: 1.6rem;
   text-align: center;
-  margin-top: -2rem;
   color: white;
+  margin-bottom: 0.2rem;
 }
 
-img {
-  width: 240px;
-  height: 240px;
+/* Contêiner principal */
+.App {
   display: flex;
-  margin: 0 auto;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Estilização dos rótulos */
+label {
+  color: white;
+  display: inline-block;
+  font-size: 1.4rem;
+  font-weight: bold;
+  font-family: 'Times New Roman', Times, serif;
+  text-align: center;
+}
+
+.loterias-container,
+.numero-jogos-container,
+.cotas-container,
+.quantidade-numeros-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Select */
+select {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  margin: 0.5rem 0;
+  text-align: center;
+}
+
+/* Inputs radio */
+input[type='radio'] {
+  accent-color: black;
+  transform: scale(1.2);
+  margin: 0.5rem;
+}
+
+button {
+  background-color: white;
+  color: rgb(25, 53, 114);
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.resultado {
+  color: white;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+
+/* Responsividade para telas maiores */
+@media (min-width: 768px) {
+  .App {
+    max-width: 600px;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  img {
+    width: 220px;
+  }
 }
