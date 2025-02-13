@@ -1,6 +1,7 @@
-import RadioGroupProps from '../interfaces/RadioGroupProps';
+import GroupProps from '../../interfaces/GroupProps';
+import './RadioGroup.css';
 
-const RadioGroup: React.FC<RadioGroupProps> = ({
+const RadioGroup: React.FC<GroupProps> = ({
   label,
   name,
   options,
@@ -11,7 +12,7 @@ const RadioGroup: React.FC<RadioGroupProps> = ({
     <div className={`${name}-container`}>
       <label>{label}</label>
       <div>
-        {options.map((option) => (
+        {options.map((option: string | number) => (
           <label key={option}>
             <input
               type='radio'

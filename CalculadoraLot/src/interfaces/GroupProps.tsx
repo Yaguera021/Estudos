@@ -1,4 +1,4 @@
-interface RadioGroupProps {
+interface GroupProps {
   label: string;
   name: string;
   options: (string | number)[];
@@ -6,4 +6,4 @@ interface RadioGroupProps {
   onChange: (value: string | number) => void;
 }
 
-export default RadioGroupProps;
+export default GroupProps;

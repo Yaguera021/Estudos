@@ -1,15 +1,17 @@
 import { useState } from 'react';
 import './App.css';
 import logo from './images/trevo-loterias.png';
-import RadioGroup from './components/RadioGroup';
+// import RadioGroup from './components/RadioGroup';
+import SelectGroup from './components/Select/SelectGroup';
 
 function App() {
   const [loteria, setLoteria] = useState('mega-sena');
   const [numeroJogos, setNumeroJogos] = useState(1);
   const [cotas, setCotas] = useState(2);
-  const [quantidadeNumeros, setQuantidadeNumeros] = useState(0);
+  const [quantidadeNumeros, setQuantidadeNumeros] = useState(6);
   const [resultado, setResultado] = useState<{
     valorTotal: number;
+    valorTotalBolao: number;
     valorPorCota: number;
     qtdeApostas: number;
   } | null>(null);
@@ -42,22 +44,28 @@ function App() {
       return combinacao;
     };
 
-    if (!precoPorDezena[quantidadeNumeros] || numeroJogos <= 0 || cotas <= 0) {
-      return { valorTotal: 0, valorPorCota: 0, qtdeApostas: 0 };
+    if (quantidadeNumeros < 6 || !precoPorDezena[quantidadeNumeros]) {
+      return {
+        valorTotal: 0,
+        valorTotalBolao: 0,
+        valorPorCota: 0,
+        qtdeApostas: 0,
+      };
     }
 
     const precoUnitario = precoPorDezena[quantidadeNumeros];
-
     const valorTotal = precoUnitario * numeroJogos;
-    const valorPorCota = valorTotal / cotas;
+    const valorTotalBolao = valorTotal * 1.35;
+    const valorPorCota = valorTotalBolao / cotas;
     const qtdeApostas = calcularCombinacoes(quantidadeNumeros) * numeroJogos;
 
-    return { valorTotal, valorPorCota, qtdeApostas };
+    return { valorTotal, valorTotalBolao, valorPorCota, qtdeApostas };
   };
 
   const handleCalcular = () => {
-    const { valorTotal, valorPorCota, qtdeApostas } = calcularPrecoJogo();
-    setResultado({ valorTotal, valorPorCota, qtdeApostas });
+    const { valorTotal, valorTotalBolao, valorPorCota, qtdeApostas } =
+      calcularPrecoJogo();
+    setResultado({ valorTotal, valorTotalBolao, valorPorCota, qtdeApostas });
   };
 
   return (
@@ -78,7 +86,7 @@ function App() {
         </select>
       </div>
 
-      <RadioGroup
+      {/* <RadioGroup
         label='Número de jogos:'
         name='numero-jogos'
         options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
@@ -100,21 +108,55 @@ function App() {
         options={[6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]}
         selectedValue={quantidadeNumeros}
         onChange={(value) => setQuantidadeNumeros(Number(value))}
+      /> */}
+
+      <SelectGroup
+        label='Número de jogos:'
+        name='numero-jogos'
+        options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+        selectedValue={numeroJogos}
+        onChange={(value) => setNumeroJogos(Number(value))}
+      />
+
+      <SelectGroup
+        label='Número de cotas:'
+        name='cotas'
+        options={[2, 3, 4, 5, 6, 7, 8, 9, 10]}
+        selectedValue={cotas}
+        onChange={(value) => setCotas(Number(value))}
+      />
+
+      <SelectGroup
+        label='Quantidade de números:'
+        name='quantidade-numeros'
+        options={[6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]}
+        selectedValue={quantidadeNumeros}
+        onChange={(value) => setQuantidadeNumeros(Number(value))}
       />
 
       <button onClick={handleCalcular}>Calcular</button>
 
       <div className='resultado'>
-        <h3>Resultado</h3>
-        <p>Valor total:</p>
+        <h3>Resultados:</h3>
+        <br />
+        {/* <p>Valor total:</p>
         <p>
           {resultado
             ? `${new Intl.NumberFormat('pt-BR', {
                 style: 'currency',
                 currency: 'BRL',
               }).format(resultado.valorTotal)}`
-            : 'xxx'}
-        </p>
+            : 'R$ 0,00'}
+        </p> */}
+        {/* <p>Valor total Bolão Lotérico:</p>
+        <p>
+          {resultado
+            ? `${new Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL',
+              }).format(resultado.valorTotalBolao)}`
+            : 'R$ 0,00'}
+        </p> */}
         <p>Valor por cota:</p>
         <p>
           {resultado
@@ -122,14 +164,19 @@ function App() {
                 style: 'currency',
                 currency: 'BRL',
               }).format(resultado.valorPorCota)}`
-            : 'xxx'}
+            : 'R$ 0,00'}
         </p>
         <p>Quantidade de apostas:</p>
         <p>
           {resultado
             ? `${new Intl.NumberFormat('pt-BR').format(resultado.qtdeApostas)}`
-            : 'xxx'}
+            : '0'}
         </p>
+      </div>
+      <div className='premiacoes'>
+        <h3>Premiações:</h3>
+        <br />
+        <p>🚧 EM BREVE 🚧 </p>
       </div>
     </div>
   );
