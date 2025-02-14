@@ -11,18 +11,18 @@ body {
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
-  padding: 1rem;
+  padding: 0.5rem;
 }
 
 /* Logo */
 img {
-  width: 100px;
+  width: 80px;
 }
 
 /* Título */
 h2 {
   font-family: 'Times New Roman', Times, serif;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   text-align: center;
   color: white;
   margin-bottom: 0.2rem;
