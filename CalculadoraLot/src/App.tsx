@@ -7,6 +7,7 @@ import CalculadoraMegaSena from './components/Table/TablePrizes';
 
 function App() {
   const [loteria, setLoteria] = useState('mega-sena');
+  const [faixaPremiacao, setFaixaPremiacao] = useState(6);
   const [numeroJogos, setNumeroJogos] = useState(1);
   const [cotas, setCotas] = useState(2);
   const [quantidadeNumeros, setQuantidadeNumeros] = useState(6);
@@ -67,6 +68,18 @@ function App() {
     const { valorTotal, valorTotalBolao, valorPorCota, qtdeApostas } =
       calcularPrecoJogo();
     setResultado({ valorTotal, valorTotalBolao, valorPorCota, qtdeApostas });
+  };
+
+  const faixaAnterior = () => {
+    if (faixaPremiacao > 4) {
+      setFaixaPremiacao(faixaPremiacao - 1);
+    }
+  };
+
+  const faixaSeguinte = () => {
+    if (faixaPremiacao < 6) {
+      setFaixaPremiacao(faixaPremiacao + 1);
+    }
   };
 
   return (
@@ -132,8 +145,16 @@ function App() {
         </p>
       </div>
       <div className='premiacoes'>
-        <h3>Premiações - 6 Números</h3>
+        <h3>Premiações - {faixaPremiacao} Números</h3>
         <CalculadoraMegaSena quantidadeNumeros={quantidadeNumeros} />
+      </div>
+      <div className='botoes'>
+        <button onClick={faixaAnterior} disabled={faixaPremiacao === 4}>
+          {'<'}
+        </button>
+        <button onClick={faixaSeguinte} disabled={faixaPremiacao === 6}>
+          {'>'}
+        </button>
       </div>
     </div>
   );
