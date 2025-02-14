@@ -115,7 +115,6 @@ function App() {
 
       <div className='resultado'>
         <h3>Resultados:</h3>
-        <br />
         <p>Valor por cota:</p>
         <p>
           {resultado
@@ -133,8 +132,8 @@ function App() {
         </p>
       </div>
       <div className='premiacoes'>
-        <h3>Premiações:</h3>
-        <CalculadoraMegaSena />
+        <h3>Premiações - 6 Números</h3>
+        <CalculadoraMegaSena quantidadeNumeros={quantidadeNumeros} />
       </div>
     </div>
   );

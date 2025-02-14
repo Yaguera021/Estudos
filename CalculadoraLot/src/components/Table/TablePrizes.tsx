@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import './TablePrizes.css';
 
 type TabelaPremios = {
   [key: number]: {
@@ -9,6 +9,10 @@ type TabelaPremios = {
     quadra5: number;
     quadra4: number;
   };
+};
+
+type Props = {
+  quantidadeNumeros: number;
 };
 
 const tabelaPremios: TabelaPremios = {
@@ -99,33 +103,31 @@ const tabelaPremios: TabelaPremios = {
   },
 };
 
-export default function CalculadoraMegaSena() {
-  const [quantidade, setQuantidade] = useState(6);
-
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setQuantidade(Number(e.target.value));
-  };
-
+export default function CalculadoraMegaSena({ quantidadeNumeros }: Props) {
   return (
     <div>
-      <label>Quantidade de números jogados:</label>
-      <select value={quantidade} onChange={handleChange}>
-        {Object.keys(tabelaPremios).map((num) => (
-          <option key={num} value={num}>
-            {num} números
-          </option>
-        ))}
-      </select>
-
-      <div>
-        <h3>Possíveis Prêmios:</h3>
-        <p>Sena: {tabelaPremios[quantidade].sena}x</p>
-        <p>Quina (6 números): {tabelaPremios[quantidade].quina6}x</p>
-        <p>Quadra (6 números): {tabelaPremios[quantidade].quadra6}x</p>
-        <p>Quina (5 números): {tabelaPremios[quantidade].quina5}x</p>
-        <p>Quadra (5 números): {tabelaPremios[quantidade].quadra5}x</p>
-        <p>Quadra (4 números): {tabelaPremios[quantidade].quadra4}x</p>
-      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Acertos</th>
+            <th>Quantidade</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Sena</td>
+            <td>x {tabelaPremios[quantidadeNumeros].sena} </td>
+          </tr>
+          <tr>
+            <td>Quina</td>
+            <td>x {tabelaPremios[quantidadeNumeros].quina6} </td>
+          </tr>
+          <tr>
+            <td>Quadra</td>
+            <td>x {tabelaPremios[quantidadeNumeros].quadra6} </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   );
 }
