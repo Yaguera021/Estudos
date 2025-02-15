@@ -13,6 +13,7 @@ type TabelaPremios = {
 
 type Props = {
   quantidadeNumeros: number;
+  acertosUsuario: number;
 };
 
 const tabelaPremios: TabelaPremios = {
@@ -103,7 +104,23 @@ const tabelaPremios: TabelaPremios = {
   },
 };
 
-export default function CalculadoraMegaSena({ quantidadeNumeros }: Props) {
+const premiosMap = {
+  6: { sena: 'sena', quina: 'quina6', quadra: 'quadra6' },
+  5: { sena: null, quina: 'quina5', quadra: 'quadra5' },
+  4: { sena: null, quina: null, quadra: 'quadra4' },
+};
+
+type PremioMap = {
+  6: { sena: string; quina: string; quadra: string };
+  5: { sena: null; quina: string; quadra: string };
+  4: { sena: null; quina: null; quadra: string };
+};
+
+export default function CalculadoraMegaSena({
+  quantidadeNumeros,
+  acertosUsuario,
+}: Props) {
+  const faixaAtual = premiosMap[acertosUsuario as keyof PremioMap];
   return (
     <div>
       <table>
@@ -114,18 +131,45 @@ export default function CalculadoraMegaSena({ quantidadeNumeros }: Props) {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Sena</td>
-            <td>x {tabelaPremios[quantidadeNumeros].sena} </td>
-          </tr>
-          <tr>
-            <td>Quina</td>
-            <td>x {tabelaPremios[quantidadeNumeros].quina6} </td>
-          </tr>
-          <tr>
-            <td>Quadra</td>
-            <td>x {tabelaPremios[quantidadeNumeros].quadra6} </td>
-          </tr>
+          {faixaAtual.sena && (
+            <tr>
+              <td>Sena</td>
+              <td>
+                x{' '}
+                {
+                  tabelaPremios[quantidadeNumeros][
+                    faixaAtual.sena as keyof (typeof tabelaPremios)[6]
+                  ]
+                }
+              </td>
+            </tr>
+          )}
+          {faixaAtual.quina && (
+            <tr>
+              <td>Quina</td>
+              <td>
+                x{' '}
+                {
+                  tabelaPremios[quantidadeNumeros][
+                    faixaAtual.quina as keyof (typeof tabelaPremios)[6]
+                  ]
+                }
+              </td>
+            </tr>
+          )}
+          {faixaAtual.quadra && (
+            <tr>
+              <td>Quadra</td>
+              <td>
+                x{' '}
+                {
+                  tabelaPremios[quantidadeNumeros][
+                    faixaAtual.quadra as keyof (typeof tabelaPremios)[6]
+                  ]
+                }
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
     </div>

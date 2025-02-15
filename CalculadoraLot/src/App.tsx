@@ -154,7 +154,10 @@ function App() {
       </div>
       <div className='premiacoes'>
         <h3>Premiações - {faixaPremiacao} Números</h3>
-        <CalculadoraMegaSena quantidadeNumeros={quantidadeNumeros} />
+        <CalculadoraMegaSena
+          quantidadeNumeros={quantidadeNumeros}
+          acertosUsuario={faixaPremiacao}
+        />
       </div>
       <div className='botoes'>
         <button onClick={faixaAnterior} disabled={faixaPremiacao === 4}>
