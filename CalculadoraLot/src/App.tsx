@@ -152,6 +152,7 @@ function App() {
         <button onClick={faixaAnterior} disabled={faixaPremiacao === 4}>
           {'<'}
         </button>
+        <img className='logo-baixo' src={logo} alt='logo' />
         <button onClick={faixaSeguinte} disabled={faixaPremiacao === 6}>
           {'>'}
         </button>

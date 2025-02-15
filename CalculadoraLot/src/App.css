@@ -84,12 +84,17 @@ button {
 .botoes {
   display: flex;
   justify-content: space-between;
-  gap: 2rem;
+  gap: 1.4rem;
   width: 100%;
 }
 
 .botoes button {
   margin: 1rem;
+}
+
+.logo-baixo {
+  width: 60px;
+  height: 60px;
 }
 
 /* Responsividade para telas maiores */
