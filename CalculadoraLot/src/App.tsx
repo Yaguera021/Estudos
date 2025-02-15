@@ -67,6 +67,14 @@ function App() {
   const handleCalcular = () => {
     const { valorTotal, valorTotalBolao, valorPorCota, qtdeApostas } =
       calcularPrecoJogo();
+
+    if (loteria === 'mega-sena' && quantidadeNumeros === 6) {
+      if (valorPorCota < 15 || valorPorCota > 50) {
+        alert('Valor por cota deve ser entre R$ 15,00 e R$ 50,00');
+        return;
+      }
+    }
+
     setResultado({ valorTotal, valorTotalBolao, valorPorCota, qtdeApostas });
   };
 
