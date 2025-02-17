@@ -101,9 +101,12 @@ function App() {
       calcularPrecoJogo();
 
     if (loteria === 'mega-sena' && quantidadeNumeros === 6) {
-      if (valorPorCota < 15 || valorPorCota > 50) {
-        alert('Valor por cota deve ser entre R$ 15,00 e R$ 50,00');
-        return;
+      if (valorPorCota < 15) {
+        alert('Valor por cota não pode ser inferior a R$ 15,00R$');
+      }
+    } else if (loteria === 'quina' && quantidadeNumeros === 5) {
+      if (valorPorCota < 12.5) {
+        alert('Valor por cota não pode ser inferior a R$ 12,50R$');
       }
     }
 
