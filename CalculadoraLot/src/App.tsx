@@ -1,12 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import logo from './images/trevo-loterias.png';
 import SelectGroup from './components/Select/SelectGroup';
 
 import './App.css';
-import CalculadoraMegaSena from './components/Table/TablePrizes';
+// import CalculadoraMegaSena from './components/Table/TablePrizes';
 
 function App() {
-  const [loteria, setLoteria] = useState('mega-sena');
+  const [loteria, setLoteria] = useState<Loteria>('mega-sena');
   const [faixaPremiacao, setFaixaPremiacao] = useState(6);
   const [numeroJogos, setNumeroJogos] = useState(1);
   const [cotas, setCotas] = useState(2);
@@ -18,24 +18,56 @@ function App() {
     qtdeApostas: number;
   } | null>(null);
 
-  const calcularPrecoJogo = () => {
-    const precoPorDezena: { [key: number]: number } = {
-      6: 5.0,
-      7: 35.0,
-      8: 140.0,
-      9: 420.0,
-      10: 1050.0,
-      11: 2310.0,
-      12: 4620.0,
-      13: 8580.0,
-      14: 15015.0,
-      15: 25025.0,
-      16: 40040.0,
-      17: 61880.0,
-      18: 92820.0,
-      19: 135660.0,
-      20: 193800.0,
-    };
+  useEffect(() => {
+    setQuantidadeNumeros(opcoesQuantidadeNumeros[loteria][0]);
+  }, [loteria]);
+
+  const precoPorDezenaMega: { [key: number]: number } = {
+    6: 5.0,
+    7: 35.0,
+    8: 140.0,
+    9: 420.0,
+    10: 1050.0,
+    11: 2310.0,
+    12: 4620.0,
+    13: 8580.0,
+    14: 15015.0,
+    15: 25025.0,
+    16: 40040.0,
+    17: 61880.0,
+    18: 92820.0,
+    19: 135660.0,
+    20: 193800.0,
+  };
+
+  const precoPorDezenaQuina: { [key: number]: number } = {
+    5: 2.5,
+    6: 15.0,
+    7: 52.5,
+    8: 140.0,
+    9: 315.0,
+    10: 630.0,
+    11: 1155.0,
+    12: 1980.0,
+    13: 3217.5,
+    14: 5005.0,
+    15: 7507.5,
+  };
+
+  type Loteria = 'mega-sena' | 'quina';
+
+  const opcoesQuantidadeNumeros: Record<Loteria, number[]> = {
+    'mega-sena': [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+    quina: [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+  };
+
+  function calcularPrecoJogo() {
+    let precoPorDezena: { [key: number]: number } = {};
+    if (loteria === 'mega-sena') {
+      precoPorDezena = precoPorDezenaMega;
+    } else if (loteria === 'quina') {
+      precoPorDezena = precoPorDezenaQuina;
+    }
 
     const calcularCombinacoes = (n: number) => {
       if (n < 6) return 0;
@@ -62,7 +94,7 @@ function App() {
     const qtdeApostas = calcularCombinacoes(quantidadeNumeros) * numeroJogos;
 
     return { valorTotal, valorTotalBolao, valorPorCota, qtdeApostas };
-  };
+  }
 
   const handleCalcular = () => {
     const { valorTotal, valorTotalBolao, valorPorCota, qtdeApostas } =
@@ -100,10 +132,10 @@ function App() {
           name='loterias'
           id='loterias'
           value={loteria}
-          onChange={(e) => setLoteria(e.target.value)}
+          onChange={(e) => setLoteria(e.target.value as Loteria)}
         >
           <option value='mega-sena'>Mega-Sena</option>
-          {/* <option value='quina'>Quina</option> */}
+          <option value='quina'>Quina</option>
           {/* <option value='lotofacil'>Lotofácil</option> */}
         </select>
       </div>
@@ -127,7 +159,7 @@ function App() {
       <SelectGroup
         label='Quantidade de números:'
         name='quantidade-numeros'
-        options={[6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]}
+        options={opcoesQuantidadeNumeros[loteria]}
         selectedValue={quantidadeNumeros}
         onChange={(value) => setQuantidadeNumeros(Number(value))}
       />
@@ -154,10 +186,10 @@ function App() {
       </div>
       <div className='premiacoes'>
         <h3>Premiações - {faixaPremiacao} Números</h3>
-        <CalculadoraMegaSena
+        {/* <CalculadoraMegaSena
           quantidadeNumeros={quantidadeNumeros}
           acertosUsuario={faixaPremiacao}
-        />
+        /> */}
       </div>
       <div className='botoes'>
         <button onClick={faixaAnterior} disabled={faixaPremiacao === 4}>
