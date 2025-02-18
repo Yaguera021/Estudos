@@ -16,7 +16,7 @@ Este projeto tem como objetivo oferecer uma **calculadora de custos x probabilid
 
 1. Clone o repositório:
    ```bash
-   git clone <url-do-repositorio>
+   git clone git@github.com:Yaguera021/Estudos.git
    ```
 2. Instale as dependências:
    ```bash
