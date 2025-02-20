@@ -59,7 +59,7 @@ function App() {
 
   useEffect(() => {
     setQuantidadeNumeros(opcoesQuantidadeNumeros[loteria][0]);
-  }, [loteria, opcoesQuantidadeNumeros]);
+  }, [loteria]);
 
   function calcularPrecoJogo() {
     let precoPorDezena: { [key: number]: number } = {};
