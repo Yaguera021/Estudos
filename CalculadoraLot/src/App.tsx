@@ -59,6 +59,7 @@ function App() {
 
   useEffect(() => {
     setQuantidadeNumeros(opcoesQuantidadeNumeros[loteria][0]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loteria]);
 
   function calcularPrecoJogo() {
