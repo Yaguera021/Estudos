@@ -99,6 +99,11 @@ function App() {
       </div>
       <div className='premiacoes'>
         <h3>Premiações - {faixaPremiacao} Números</h3>
+        <br />
+        ESTAMOS TRABALHANDO NESSA PARTE 🚧
+        <br />
+        <br />
+        <br />
         {/* <CalculadoraMegaSena quantidadeNumeros={quantidadeNumeros} acertosUsuario={faixaPremiacao} premios={loteria === 'mega-sena' ? premiosMega : premiosQuina} /> */}
       </div>
       <div className='botoes'>
