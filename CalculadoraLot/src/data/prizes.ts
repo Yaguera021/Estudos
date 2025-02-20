@@ -1,0 +1,31 @@
+export const premiosMega = {
+  6: { sena: 1, quina6: 0, quadra6: 0, quina5: 1, quadra5: 0, quadra4: 1 },
+  7: { sena: 1, quina6: 6, quadra6: 0, quina5: 2, quadra5: 5, quadra4: 3 },
+  8: { sena: 1, quina6: 12, quadra6: 15, quina5: 3, quadra5: 15, quadra4: 6 },
+  9: { sena: 1, quina6: 18, quadra6: 45, quina5: 4, quadra5: 30, quadra4: 10 },
+  10: { sena: 1, quina6: 24, quadra6: 90, quina5: 5, quadra5: 50, quadra4: 15 },
+  11: { sena: 1, quina6: 30, quadra6: 150, quina5: 6, quadra5: 75, quadra4: 21 },
+  12: { sena: 1, quina6: 36, quadra6: 225, quina5: 7, quadra5: 105, quadra4: 28 },
+  13: { sena: 1, quina6: 42, quadra6: 315, quina5: 8, quadra5: 140, quadra4: 36 },
+  14: { sena: 1, quina6: 48, quadra6: 420, quina5: 9, quadra5: 180, quadra4: 45 },
+  15: { sena: 1, quina6: 54, quadra6: 540, quina5: 10, quadra5: 225, quadra4: 55 },
+  16: { sena: 1, quina6: 60, quadra6: 675, quina5: 11, quadra5: 275, quadra4: 66 },
+  17: { sena: 1, quina6: 66, quadra6: 825, quina5: 12, quadra5: 330, quadra4: 78 },
+  18: { sena: 1, quina6: 72, quadra6: 990, quina5: 13, quadra5: 390, quadra4: 91 },
+  19: { sena: 1, quina6: 78, quadra6: 1170, quina5: 14, quadra5: 455, quadra4: 105 },
+  20: { sena: 1, quina6: 84, quadra6: 1365, quina5: 15, quadra5: 525, quadra4: 120 },
+};
+
+export const premiosQuina = {
+  5: { quina: 1, quadra5: 0, terno5: 0, duque5: 0, quadra4: 1, terno4: 0, duque4: 0, terno3: 1, duque3: 0, duque2: 1 },
+  6: { quina: 1, quadra5: 5, terno5: 0, duque5: 0, quadra4: 2, terno4: 4, duque4: 0, terno3: 3, duque3: 3, duque2: 4 },
+  7: { quina: 1, quadra5: 10, terno5: 10, duque5: 0, quadra4: 3, terno4: 12, duque4: 6, terno3: 6, duque3: 12, duque2: 10 },
+  8: { quina: 1, quadra5: 15, terno5: 30, duque5: 10, quadra4: 4, terno4: 24, duque4: 24, terno3: 10, duque3: 30, duque2: 20 },
+  9: { quina: 1, quadra5: 20, terno5: 60, duque5: 40, quadra4: 5, terno4: 40, duque4: 60, terno3: 15, duque3: 60, duque2: 35 },
+  10: { quina: 1, quadra5: 25, terno5: 100, duque5: 100, quadra4: 6, terno4: 60, duque4: 120, terno3: 21, duque3: 105, duque2: 56 },
+  11: { quina: 1, quadra5: 30, terno5: 150, duque5: 200, quadra4: 7, terno4: 84, duque4: 210, terno3: 28, duque3: 168, duque2: 84 },
+  12: { quina: 1, quadra5: 35, terno5: 210, duque5: 350, quadra4: 8, terno4: 112, duque4: 336, terno3: 36, duque3: 252, duque2: 120 },
+  13: { quina: 1, quadra5: 40, terno5: 280, duque5: 560, quadra4: 9, terno4: 144, duque4: 504, terno3: 45, duque3: 360, duque2: 165 },
+  14: { quina: 1, quadra5: 45, terno5: 360, duque5: 840, quadra4: 10, terno4: 180, duque4: 720, terno3: 55, duque3: 495, duque2: 220 },
+  15: { quina: 1, quadra5: 50, terno5: 450, duque5: 1200, quadra4: 11, terno4: 220, duque4: 990, terno3: 66, duque3: 660, duque2: 286 },
+};
