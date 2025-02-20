@@ -102,13 +102,11 @@ function App() {
 
     if (loteria === 'mega-sena' && quantidadeNumeros === 6) {
       if (valorPorCota < 15) {
-        alert('Valor por cota não pode ser inferior a R$ 15,00R$');
-        return;
+        alert('Valor por cota não pode ser inferior a 15,00R$');
       }
     } else if (loteria === 'quina' && quantidadeNumeros === 5) {
       if (valorPorCota < 12.5) {
-        alert('Valor por cota não pode ser inferior a R$ 12,50R$');
-        return;
+        alert('Valor por cota não pode ser inferior a 12,50R$');
       }
     }
 
