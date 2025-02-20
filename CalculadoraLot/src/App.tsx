@@ -18,10 +18,6 @@ function App() {
     qtdeApostas: number;
   } | null>(null);
 
-  useEffect(() => {
-    setQuantidadeNumeros(opcoesQuantidadeNumeros[loteria][0]);
-  }, [loteria]);
-
   const precoPorDezenaMega: { [key: number]: number } = {
     6: 5.0,
     7: 35.0,
@@ -60,6 +56,10 @@ function App() {
     'mega-sena': [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
     quina: [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
   };
+
+  useEffect(() => {
+    setQuantidadeNumeros(opcoesQuantidadeNumeros[loteria][0]);
+  }, [loteria, opcoesQuantidadeNumeros]);
 
   function calcularPrecoJogo() {
     let precoPorDezena: { [key: number]: number } = {};
@@ -103,10 +103,12 @@ function App() {
     if (loteria === 'mega-sena' && quantidadeNumeros === 6) {
       if (valorPorCota < 15) {
         alert('Valor por cota não pode ser inferior a R$ 15,00R$');
+        return;
       }
     } else if (loteria === 'quina' && quantidadeNumeros === 5) {
       if (valorPorCota < 12.5) {
         alert('Valor por cota não pode ser inferior a R$ 12,50R$');
+        return;
       }
     }
 
