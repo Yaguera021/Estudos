@@ -30,6 +30,14 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loteria]);
 
+  useEffect(() => {
+    if (loteria === 'quina') {
+      setFaixaPremiacao(5);
+    } else {
+      setFaixaPremiacao(6);
+    }
+  }, [loteria]);
+
   const handleCalcular = () => {
     const resultado = calcularPrecoJogo(loteria, quantidadeNumeros, numeroJogos, cotas);
 
@@ -45,13 +53,17 @@ function App() {
   };
 
   const faixaAnterior = () => {
-    if (faixaPremiacao > 4) {
+    if (loteria === 'quina' && faixaPremiacao > 2) {
+      setFaixaPremiacao(faixaPremiacao - 1);
+    } else if (loteria === 'mega-sena' && faixaPremiacao > 4) {
       setFaixaPremiacao(faixaPremiacao - 1);
     }
   };
 
   const faixaSeguinte = () => {
-    if (faixaPremiacao < 6) {
+    if (loteria === 'quina' && faixaPremiacao < 5) {
+      setFaixaPremiacao(faixaPremiacao + 1);
+    } else if (loteria === 'mega-sena' && faixaPremiacao < 6) {
       setFaixaPremiacao(faixaPremiacao + 1);
     }
   };
@@ -107,11 +119,11 @@ function App() {
         {/* <CalculadoraMegaSena quantidadeNumeros={quantidadeNumeros} acertosUsuario={faixaPremiacao} premios={loteria === 'mega-sena' ? premiosMega : premiosQuina} /> */}
       </div>
       <div className='botoes'>
-        <button onClick={faixaAnterior} disabled={faixaPremiacao === 4}>
+        <button onClick={faixaAnterior} disabled={loteria === 'quina' ? faixaPremiacao === 2 : faixaPremiacao === 4}>
           {'<'}
         </button>
         <img className='logo-baixo' src={logo} alt='logo' />
-        <button onClick={faixaSeguinte} disabled={faixaPremiacao === 6}>
+        <button onClick={faixaSeguinte} disabled={loteria === 'quina' ? faixaPremiacao === 5 : faixaPremiacao === 6}>
           {'>'}
         </button>
       </div>
