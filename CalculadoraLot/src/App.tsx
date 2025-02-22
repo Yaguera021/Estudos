@@ -37,6 +37,9 @@ function App() {
 
   useEffect(() => {
     setQuantidadeNumeros(opcoesQuantidadeNumeros[loteria][0]);
+    setNumeroJogos(1);
+    setCotas(2);
+    setResultado(null);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loteria]);
 
