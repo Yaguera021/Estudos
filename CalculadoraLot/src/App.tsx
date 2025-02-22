@@ -99,6 +99,7 @@ function App() {
         <button onClick={() => window.open(imagensTabela[loteria].premios, '_blank')}>Tabela de Prêmios</button>
         <button onClick={() => window.open(imagensTabela[loteria].prob, '_blank')}>Probabilidades</button>
       </div>
+      <img src={logo} alt='logo' />
     </div>
   );
 }
