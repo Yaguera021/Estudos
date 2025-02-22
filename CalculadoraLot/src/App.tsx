@@ -26,12 +26,12 @@ function App() {
 
   const imagensTabela = {
     'mega-sena': {
-      premios: '/public/premios-mega.png',
-      prob: '/public/prob-mega.png',
+      premios: '/premios-mega.png',
+      prob: '/prob-mega.png',
     },
     quina: {
-      premios: '/public/premios-quina.png',
-      prob: '/public/prob-quina.png',
+      premios: '/premios-quina.png',
+      prob: '/prob-quina.png',
     },
   };
 
