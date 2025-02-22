@@ -7,7 +7,6 @@ import './App.css';
 
 function App() {
   const [loteria, setLoteria] = useState<Loteria>('mega-sena');
-  const [faixaPremiacao, setFaixaPremiacao] = useState(6);
   const [numeroJogos, setNumeroJogos] = useState(1);
   const [cotas, setCotas] = useState(2);
   const [quantidadeNumeros, setQuantidadeNumeros] = useState(6);
@@ -25,17 +24,20 @@ function App() {
     quina: [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
   };
 
+  const imagensTabela = {
+    'mega-sena': {
+      premios: '/public/premios-mega.png',
+      prob: '/public/prob-mega.png',
+    },
+    quina: {
+      premios: '/public/premios-quina.png',
+      prob: '/public/prob-quina.png',
+    },
+  };
+
   useEffect(() => {
     setQuantidadeNumeros(opcoesQuantidadeNumeros[loteria][0]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loteria]);
-
-  useEffect(() => {
-    if (loteria === 'quina') {
-      setFaixaPremiacao(5);
-    } else {
-      setFaixaPremiacao(6);
-    }
   }, [loteria]);
 
   const handleCalcular = () => {
@@ -50,22 +52,6 @@ function App() {
     }
 
     setResultado(resultado);
-  };
-
-  const faixaAnterior = () => {
-    if (loteria === 'quina' && faixaPremiacao > 2) {
-      setFaixaPremiacao(faixaPremiacao - 1);
-    } else if (loteria === 'mega-sena' && faixaPremiacao > 4) {
-      setFaixaPremiacao(faixaPremiacao - 1);
-    }
-  };
-
-  const faixaSeguinte = () => {
-    if (loteria === 'quina' && faixaPremiacao < 5) {
-      setFaixaPremiacao(faixaPremiacao + 1);
-    } else if (loteria === 'mega-sena' && faixaPremiacao < 6) {
-      setFaixaPremiacao(faixaPremiacao + 1);
-    }
   };
 
   return (
@@ -109,23 +95,9 @@ function App() {
         <p>Quantidade de apostas:</p>
         <p>{resultado ? `${new Intl.NumberFormat('pt-BR').format(resultado.qtdeApostas)}` : '0'}</p>
       </div>
-      <div className='premiacoes'>
-        <h3>Premiações - {faixaPremiacao} Números</h3>
-        <br />
-        ESTAMOS TRABALHANDO NESSA PARTE 🚧
-        <br />
-        <br />
-        <br />
-        {/* <CalculadoraMegaSena quantidadeNumeros={quantidadeNumeros} acertosUsuario={faixaPremiacao} premios={loteria === 'mega-sena' ? premiosMega : premiosQuina} /> */}
-      </div>
       <div className='botoes'>
-        <button onClick={faixaAnterior} disabled={loteria === 'quina' ? faixaPremiacao === 2 : faixaPremiacao === 4}>
-          {'<'}
-        </button>
-        <img className='logo-baixo' src={logo} alt='logo' />
-        <button onClick={faixaSeguinte} disabled={loteria === 'quina' ? faixaPremiacao === 5 : faixaPremiacao === 6}>
-          {'>'}
-        </button>
+        <button onClick={() => window.open(imagensTabela[loteria].premios, '_blank')}>Tabela de Prêmios</button>
+        <button onClick={() => window.open(imagensTabela[loteria].prob, '_blank')}>Probabilidades</button>
       </div>
     </div>
   );
